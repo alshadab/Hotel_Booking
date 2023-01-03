@@ -1,5 +1,5 @@
 .header {
-  background-color: rgb(90, 206, 134);
+  background-color: #0e5e6f;
   color: white;
   display: flex;
   justify-content: center;
@@ -9,6 +9,9 @@
   width: 100%;
   max-width: 1024px;
   margin: 20px 0px 100px 0px;
+}
+.headerContainer.listMode {
+  margin: 20px 0px 0px 0px;
 }
 
 .headerList {
@@ -31,7 +34,7 @@
 }
 
 .headerBtn {
-  background-color: rgb(29, 180, 87);
+  background-color: #294e57bb;
   color: rgb(255, 255, 255);
   border: none;
   font-weight: 500;
@@ -43,7 +46,7 @@
 .headerSearch {
   height: 30px;
   background-color: white;
-  border: 2px solid rgb(135, 147, 216);
+  border: 2px solid rgb(141, 158, 65);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -74,4 +77,39 @@
 .date {
   position: absolute;
   top: 43px;
+  z-index: 2;
+}
+.options {
+  position: absolute;
+  top: 43px;
+  background-color: white;
+  color: gray;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px -5px black;
+  box-shadow: 0px 0px 10px -5px black;
+  z-index: 2;
+}
+.optionItem {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: black;
+}
+.optionCounterButton {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0e5e6f;
+  color: #0e5e6f;
+  cursor: pointer;
+  background-color: white;
+}
+.optionCounterButton:disabled {
+  cursor: not-allowed;
 }

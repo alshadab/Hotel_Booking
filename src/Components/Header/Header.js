@@ -15,6 +15,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 const Header = () => {
   const [openDate, setOpenDate] = useState(false);
+  const [openOption, setOpenOption] = useState(false);
   const [date, setdate] = useState([
     {
       startDate: new Date(),
@@ -22,6 +23,21 @@ const Header = () => {
       key: "selection",
     },
   ]);
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
+  const handleOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  };
+
   return (
     <div className="header">
       <div className="headerContainer">
@@ -83,7 +99,74 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">2 adults 2 children 1 room</span>
+            <span
+              onClick={() => setOpenOption(!openOption)}
+              className="headerSearchText"
+            >
+              {options.adult} adult - {options.children} children -{" "}
+              {options.room} room
+            </span>
+            {openOption && (
+              <div className="options">
+                <div className="optionItem">
+                  <span className="optiontext">Adult</span>
+                  <div className="optionCounter">
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("adult", "d")}
+                      disabled={options.adult <= 1}
+                    >
+                      -
+                    </button>
+                    <span className="counterNumber">{options.adult}</span>
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("adult", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="optionItem">
+                  <span className="optiontext">Children</span>
+                  <div className="optionCounter">
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("children", "d")}
+                      disabled={options.children <= 0}
+                    >
+                      -
+                    </button>
+                    <span className="counterNumber">{options.children}</span>
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("children", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="optionItem">
+                  <span className="optiontext">Room</span>
+                  <div className="optionCounter">
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("room", "d")}
+                      disabled={options.room <= 1}
+                    >
+                      -
+                    </button>
+                    <span className="counterNumber">{options.room}</span>
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("room", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>
